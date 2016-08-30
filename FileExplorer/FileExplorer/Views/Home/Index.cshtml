@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/AngularScripts/DirectoryCtrl.js"></script>
+</head>
+<body ng-app="App">
+    
+    <div class="col-md-8 col-lg-offset-4" ng-controller="DirectoryCtrl">
+        <div ng-if="!loading">
+            <table class="table-bordered">
+                <thead>
+                    <tr class="well">
+                        <th>Less 10Mb</th>
+                        <th>10Mb - 50Mb</th>
+                        <th>More 100Mb</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{LessTenMb}}</td>
+                        <td>{{BetweenTenAndFiftyMb}}</td>
+                        <td>{{MoreOnehundredMb}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="content">
+                Current path: <span class="TextColorGray">{{currentDirectory}}</span>
+                <div class="TextColorBlue">
+                    <div class="text-info" ng-click="back()" ng-if="currentDirectory!=''">. . .</div>
+                    <div class="text-info" ng-repeat="directory in directories">
+                        <div ng-click="showDirectory(directory)">{{directory}}</div>
+                    </div>
+                    
+                        <div class="text-info" ng-repeat="file in files">
+                            <ul >
+                               {{file}}
+                            </ul>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
